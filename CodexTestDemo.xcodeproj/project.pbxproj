@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AAB1C2D3E4F5060708090A0B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B0A0908070605F4E3D2C1B1A /* SnapKit */; };
 		1F2E3D4C5B6A79808F9E0D1C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1E2F3A4B5C6D7E8F901234 /* ProfileView.swift */; };
 		7A6B5C4D3E2F1A0B9C8D7E6F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7E8D9C0B1A2F3E4D5C6B7A /* ProfileViewModel.swift */; };
 		0B2C3D4E5F60718293A4B5C6 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B2C3D4E5F60718293A4B5 /* VideoViewController.swift */; };
@@ -48,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAB1C2D3E4F5060708090A0B /* SnapKit in Frameworks */,
 				8B8B08C61C8446C0B5479545 /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -235,6 +237,7 @@ AAAA1111222233334444555F /* Profile */ = {
 			);
 			name = CodexTestDemo;
 			packageProductDependencies = (
+				B0A0908070605F4E3D2C1B1A /* SnapKit */,
 				88D177331A382345BDD9CCCA /* Moya */,
 			);
 			productName = CodexTestDemo;
@@ -261,6 +264,7 @@ AAAA1111222233334444555F /* Profile */ = {
 			mainGroup = FC433C2AEDBFBFBE60CCAFAB;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				C1B2A3D4E5F60718293A4B5C /* XCRemoteSwiftPackageReference "SnapKit" */,
 				C47F9E49F110298BCEB6910E /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			preferredProjectObjectVersion = 77;
@@ -472,6 +476,14 @@ AAAA1111222233334444555F /* Profile */ = {
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C1B2A3D4E5F60718293A4B5C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		C47F9E49F110298BCEB6910E /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya.git";
@@ -483,6 +495,11 @@ AAAA1111222233334444555F /* Profile */ = {
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B0A0908070605F4E3D2C1B1A /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1B2A3D4E5F60718293A4B5C /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
 		88D177331A382345BDD9CCCA /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C47F9E49F110298BCEB6910E /* XCRemoteSwiftPackageReference "Moya" */;

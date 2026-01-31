@@ -1,5 +1,6 @@
 import UIKit
 import WebKit
+import SnapKit
 
 final class NewsDetailViewController: UIViewController {
   private let item: NewsItem
@@ -46,28 +47,23 @@ final class NewsDetailViewController: UIViewController {
   }
 
   private func configureWebView() {
-    webView.translatesAutoresizingMaskIntoConstraints = false
     webView.navigationDelegate = self
     view.addSubview(webView)
 
-    NSLayoutConstraint.activate([
-      webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      webView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-    ])
+    webView.snp.makeConstraints { make in
+      make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+      make.leading.trailing.bottom.equalToSuperview()
+    }
   }
 
   private func configureActivityIndicator() {
-    activityIndicator.translatesAutoresizingMaskIntoConstraints = false
     activityIndicator.hidesWhenStopped = true
     activityIndicator.startAnimating()
     view.addSubview(activityIndicator)
 
-    NSLayoutConstraint.activate([
-      activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-    ])
+    activityIndicator.snp.makeConstraints { make in
+      make.center.equalToSuperview()
+    }
   }
 
 }

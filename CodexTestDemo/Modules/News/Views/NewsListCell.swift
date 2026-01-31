@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 final class NewsListCell: UITableViewCell {
   static let reuseIdentifier = "NewsListCell"
@@ -40,7 +41,6 @@ final class NewsListCell: UITableViewCell {
   }
 
   private func configureViews() {
-    cardView.translatesAutoresizingMaskIntoConstraints = false
     cardView.backgroundColor = .white
     cardView.layer.cornerRadius = 14
     cardView.layer.shadowColor = UIColor.black.cgColor
@@ -49,7 +49,6 @@ final class NewsListCell: UITableViewCell {
     cardView.layer.shadowRadius = 10
     contentView.addSubview(cardView)
 
-    coverImageView.translatesAutoresizingMaskIntoConstraints = false
     coverImageView.contentMode = .scaleAspectFill
     coverImageView.clipsToBounds = true
     coverImageView.layer.cornerRadius = 10
@@ -57,46 +56,48 @@ final class NewsListCell: UITableViewCell {
     coverImageView.tintColor = UIColor(white: 0.85, alpha: 1)
     cardView.addSubview(coverImageView)
 
-    titleLabel.translatesAutoresizingMaskIntoConstraints = false
     titleLabel.font = .systemFont(ofSize: 17, weight: .semibold)
     titleLabel.textColor = .label
     titleLabel.numberOfLines = 2
     cardView.addSubview(titleLabel)
 
-    subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
     subtitleLabel.font = .systemFont(ofSize: 13)
     subtitleLabel.textColor = .secondaryLabel
     subtitleLabel.numberOfLines = 2
     cardView.addSubview(subtitleLabel)
 
-    timeLabel.translatesAutoresizingMaskIntoConstraints = false
     timeLabel.font = .systemFont(ofSize: 12, weight: .medium)
     timeLabel.textColor = .tertiaryLabel
     cardView.addSubview(timeLabel)
 
-    NSLayoutConstraint.activate([
-      cardView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-      cardView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-      cardView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-      cardView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+    cardView.snp.makeConstraints { make in
+      make.top.equalToSuperview().inset(8)
+      make.leading.trailing.equalToSuperview().inset(16)
+      make.bottom.equalToSuperview().inset(8)
+    }
 
-      coverImageView.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 12),
-      coverImageView.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 12),
-      coverImageView.widthAnchor.constraint(equalToConstant: 96),
-      coverImageView.heightAnchor.constraint(equalToConstant: 72),
+    coverImageView.snp.makeConstraints { make in
+      make.top.leading.equalToSuperview().inset(12)
+      make.size.equalTo(CGSize(width: 96, height: 72))
+    }
 
-      titleLabel.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 12),
-      titleLabel.leadingAnchor.constraint(equalTo: coverImageView.trailingAnchor, constant: 12),
-      titleLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -12),
+    titleLabel.snp.makeConstraints { make in
+      make.top.equalToSuperview().inset(12)
+      make.leading.equalTo(coverImageView.snp.trailing).offset(12)
+      make.trailing.equalToSuperview().inset(12)
+    }
 
-      subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 6),
-      subtitleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-      subtitleLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
+    subtitleLabel.snp.makeConstraints { make in
+      make.top.equalTo(titleLabel.snp.bottom).offset(6)
+      make.leading.equalTo(titleLabel)
+      make.trailing.equalTo(titleLabel)
+    }
 
-      timeLabel.topAnchor.constraint(greaterThanOrEqualTo: subtitleLabel.bottomAnchor, constant: 6),
-      timeLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-      timeLabel.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -12)
-    ])
+    timeLabel.snp.makeConstraints { make in
+      make.top.greaterThanOrEqualTo(subtitleLabel.snp.bottom).offset(6)
+      make.leading.equalTo(titleLabel)
+      make.bottom.equalToSuperview().inset(12)
+    }
   }
 
   private func loadImage(from url: URL?) {

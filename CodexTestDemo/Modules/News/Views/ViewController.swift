@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 final class ViewController: UIViewController {
   private let tableView = UITableView(frame: .zero, style: .plain)
@@ -18,7 +19,6 @@ final class ViewController: UIViewController {
   }
 
   private func configureTableView() {
-    tableView.translatesAutoresizingMaskIntoConstraints = false
     tableView.dataSource = self
     tableView.delegate = self
     tableView.rowHeight = UITableView.automaticDimension
@@ -31,16 +31,13 @@ final class ViewController: UIViewController {
     refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
     view.addSubview(tableView)
 
-    NSLayoutConstraint.activate([
-      tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-    ])
+    tableView.snp.makeConstraints { make in
+      make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+      make.leading.trailing.bottom.equalToSuperview()
+    }
   }
 
   private func configureStatusLabel() {
-    statusLabel.translatesAutoresizingMaskIntoConstraints = false
     statusLabel.textAlignment = .center
     statusLabel.numberOfLines = 0
     statusLabel.font = .systemFont(ofSize: 14)
@@ -48,12 +45,11 @@ final class ViewController: UIViewController {
     statusLabel.isHidden = true
     view.addSubview(statusLabel)
 
-    NSLayoutConstraint.activate([
-      statusLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      statusLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-      statusLabel.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 20),
-      statusLabel.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -20)
-    ])
+    statusLabel.snp.makeConstraints { make in
+      make.center.equalToSuperview()
+      make.leading.greaterThanOrEqualToSuperview().inset(20)
+      make.trailing.lessThanOrEqualToSuperview().inset(20)
+    }
   }
 
   @objc private func handleRefresh() {

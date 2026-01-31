@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 final class ProfileView: UIView {
   let tableView = UITableView(frame: .zero, style: .insetGrouped)
@@ -16,7 +17,6 @@ final class ProfileView: UIView {
   private func configureView() {
     backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.97, alpha: 1.0)
 
-    tableView.translatesAutoresizingMaskIntoConstraints = false
     tableView.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.97, alpha: 1.0)
     tableView.separatorColor = UIColor(white: 0.85, alpha: 1.0)
     tableView.rowHeight = 56
@@ -24,12 +24,9 @@ final class ProfileView: UIView {
     tableView.register(ProfileItemCell.self, forCellReuseIdentifier: ProfileItemCell.reuseIdentifier)
     addSubview(tableView)
 
-    NSLayoutConstraint.activate([
-      tableView.topAnchor.constraint(equalTo: topAnchor),
-      tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
-      tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-      tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
-    ])
+    tableView.snp.makeConstraints { make in
+      make.edges.equalToSuperview()
+    }
   }
 }
 
@@ -61,25 +58,20 @@ final class ProfileHeaderCell: UITableViewCell {
   }
 
   private func configureSubviews() {
-    avatarView.translatesAutoresizingMaskIntoConstraints = false
     avatarView.backgroundColor = UIColor(red: 0.82, green: 0.86, blue: 0.9, alpha: 1.0)
     avatarView.layer.cornerRadius = 12
     avatarView.layer.masksToBounds = true
     avatarView.image = UIImage(systemName: "person.crop.square")
     avatarView.tintColor = UIColor(white: 1.0, alpha: 0.9)
 
-    nameLabel.translatesAutoresizingMaskIntoConstraints = false
     nameLabel.font = .systemFont(ofSize: 18, weight: .semibold)
 
-    wechatIdLabel.translatesAutoresizingMaskIntoConstraints = false
     wechatIdLabel.font = .systemFont(ofSize: 13)
     wechatIdLabel.textColor = .secondaryLabel
 
-    subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
     subtitleLabel.font = .systemFont(ofSize: 12)
     subtitleLabel.textColor = .tertiaryLabel
 
-    qrImageView.translatesAutoresizingMaskIntoConstraints = false
     qrImageView.image = UIImage(systemName: "qrcode")
     qrImageView.tintColor = .secondaryLabel
     qrImageView.contentMode = .scaleAspectFit
@@ -90,29 +82,35 @@ final class ProfileHeaderCell: UITableViewCell {
     contentView.addSubview(subtitleLabel)
     contentView.addSubview(qrImageView)
 
-    NSLayoutConstraint.activate([
-      avatarView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-      avatarView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-      avatarView.widthAnchor.constraint(equalToConstant: 56),
-      avatarView.heightAnchor.constraint(equalToConstant: 56),
+    avatarView.snp.makeConstraints { make in
+      make.leading.equalToSuperview().inset(16)
+      make.centerY.equalToSuperview()
+      make.size.equalTo(CGSize(width: 56, height: 56))
+    }
 
-      nameLabel.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor, constant: 16),
-      nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 18),
-      nameLabel.trailingAnchor.constraint(lessThanOrEqualTo: qrImageView.leadingAnchor, constant: -12),
+    qrImageView.snp.makeConstraints { make in
+      make.centerY.equalToSuperview()
+      make.trailing.equalToSuperview().inset(36)
+      make.size.equalTo(CGSize(width: 20, height: 20))
+    }
 
-      wechatIdLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-      wechatIdLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 4),
-      wechatIdLabel.trailingAnchor.constraint(lessThanOrEqualTo: qrImageView.leadingAnchor, constant: -12),
+    nameLabel.snp.makeConstraints { make in
+      make.leading.equalTo(avatarView.snp.trailing).offset(16)
+      make.top.equalToSuperview().inset(18)
+      make.trailing.lessThanOrEqualTo(qrImageView.snp.leading).offset(-12)
+    }
 
-      subtitleLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-      subtitleLabel.topAnchor.constraint(equalTo: wechatIdLabel.bottomAnchor, constant: 4),
-      subtitleLabel.trailingAnchor.constraint(lessThanOrEqualTo: qrImageView.leadingAnchor, constant: -12),
+    wechatIdLabel.snp.makeConstraints { make in
+      make.leading.equalTo(nameLabel)
+      make.top.equalTo(nameLabel.snp.bottom).offset(4)
+      make.trailing.lessThanOrEqualTo(qrImageView.snp.leading).offset(-12)
+    }
 
-      qrImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-      qrImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -36),
-      qrImageView.widthAnchor.constraint(equalToConstant: 20),
-      qrImageView.heightAnchor.constraint(equalToConstant: 20)
-    ])
+    subtitleLabel.snp.makeConstraints { make in
+      make.leading.equalTo(nameLabel)
+      make.top.equalTo(wechatIdLabel.snp.bottom).offset(4)
+      make.trailing.lessThanOrEqualTo(qrImageView.snp.leading).offset(-12)
+    }
   }
 }
 
@@ -143,33 +141,31 @@ final class ProfileItemCell: UITableViewCell {
   }
 
   private func configureSubviews() {
-    iconContainer.translatesAutoresizingMaskIntoConstraints = false
     iconContainer.layer.cornerRadius = 6
 
-    iconView.translatesAutoresizingMaskIntoConstraints = false
     iconView.contentMode = .scaleAspectFit
 
-    titleLabel.translatesAutoresizingMaskIntoConstraints = false
     titleLabel.font = .systemFont(ofSize: 16)
 
     iconContainer.addSubview(iconView)
     contentView.addSubview(iconContainer)
     contentView.addSubview(titleLabel)
 
-    NSLayoutConstraint.activate([
-      iconContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-      iconContainer.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-      iconContainer.widthAnchor.constraint(equalToConstant: 28),
-      iconContainer.heightAnchor.constraint(equalToConstant: 28),
+    iconContainer.snp.makeConstraints { make in
+      make.leading.equalToSuperview().inset(16)
+      make.centerY.equalToSuperview()
+      make.size.equalTo(CGSize(width: 28, height: 28))
+    }
 
-      iconView.centerXAnchor.constraint(equalTo: iconContainer.centerXAnchor),
-      iconView.centerYAnchor.constraint(equalTo: iconContainer.centerYAnchor),
-      iconView.widthAnchor.constraint(equalToConstant: 16),
-      iconView.heightAnchor.constraint(equalToConstant: 16),
+    iconView.snp.makeConstraints { make in
+      make.center.equalToSuperview()
+      make.size.equalTo(CGSize(width: 16, height: 16))
+    }
 
-      titleLabel.leadingAnchor.constraint(equalTo: iconContainer.trailingAnchor, constant: 12),
-      titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-      titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
-    ])
+    titleLabel.snp.makeConstraints { make in
+      make.leading.equalTo(iconContainer.snp.trailing).offset(12)
+      make.centerY.equalToSuperview()
+      make.trailing.equalToSuperview().inset(16)
+    }
   }
 }

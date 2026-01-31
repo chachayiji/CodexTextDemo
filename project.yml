@@ -10,6 +10,7 @@ targets:
     sources: [CodexTestDemo]
     dependencies:
       - package: Moya
+      - package: SnapKit
     settings:
       base:
         INFOPLIST_FILE: CodexTestDemo/SupportingFiles/Info.plist
@@ -18,3 +19,6 @@ packages:
   Moya:
     url: https://github.com/Moya/Moya.git
     from: 15.0.0
+  SnapKit:
+    url: https://github.com/SnapKit/SnapKit.git
+    from: 5.0.0
