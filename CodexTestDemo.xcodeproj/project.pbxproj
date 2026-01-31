@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F0E1D2C3B4A5968778695A4B /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A5968778695A4BF0E1D2C3 /* BaseNavigationController.swift */; };
 		AAB1C2D3E4F5060708090A0B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B0A0908070605F4E3D2C1B1A /* SnapKit */; };
 		1F2E3D4C5B6A79808F9E0D1C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1E2F3A4B5C6D7E8F901234 /* ProfileView.swift */; };
 		7A6B5C4D3E2F1A0B9C8D7E6F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7E8D9C0B1A2F3E4D5C6B7A /* ProfileViewModel.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B4A5968778695A4BF0E1D2C3 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		0D1E2F3A4B5C6D7E8F901234 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		6F7E8D9C0B1A2F3E4D5C6B7A /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		09E17115DB91D23C1681FBE0 /* NewsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListCell.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@ AAAA1111222233334444555F /* Profile */ = {
 		AAAA11112222333344445560 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				B4A5968778695A4BF0E1D2C3 /* BaseNavigationController.swift */,
 				1A2B3C4D5E6F708192A3B4C5 /* TabBarController.swift */,
 			);
 			name = TabBar;
@@ -281,6 +284,7 @@ AAAA1111222233334444555F /* Profile */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0E1D2C3B4A5968778695A4B /* BaseNavigationController.swift in Sources */,
 				1F2E3D4C5B6A79808F9E0D1C /* ProfileView.swift in Sources */,
 				7A6B5C4D3E2F1A0B9C8D7E6F /* ProfileViewModel.swift in Sources */,
 				B5BC1B945EBAE8A676D2BA5F /* AppDelegate.swift in Sources */,
