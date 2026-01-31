@@ -1,0 +1,39 @@
+# macOS
+.DS_Store
+
+# Xcode
+build/
+DerivedData/
+*.xcworkspace
+!CodexTestDemo.xcodeproj/project.xcworkspace
+!CodexTestDemo.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+*.xcuserstate
+**/xcuserdata/
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved
+
+# CocoaPods
+Pods/
+
+# Carthage
+Carthage/Build/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Code coverage
+*.xccovreport
+*.xccovarchive
+
+# Temporary files
+*.swp
+*.tmp
