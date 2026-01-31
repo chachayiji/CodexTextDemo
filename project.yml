@@ -1,0 +1,20 @@
+name: CodexTestDemo
+options:
+  bundleIdPrefix: com.codex
+  deploymentTarget:
+    iOS: "15.0"
+targets:
+  CodexTestDemo:
+    type: application
+    platform: iOS
+    sources: [CodexTestDemo]
+    dependencies:
+      - package: Moya
+    settings:
+      base:
+        INFOPLIST_FILE: CodexTestDemo/SupportingFiles/Info.plist
+
+packages:
+  Moya:
+    url: https://github.com/Moya/Moya.git
+    from: 15.0.0
